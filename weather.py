@@ -1,6 +1,5 @@
 from requests import get
 from bs4 import BeautifulSoup
-from pandas import DataFrame
 print('Подключаюсь к яндекс погоде ...')
 try:
     page = get('https://yandex.ru/pogoda/iset?via=reg')
@@ -25,12 +24,6 @@ day_list = [one_temp_day.text[4:] for one_temp_day in temp_days]
 night_list = [one_temp_night.text[5:] for one_temp_night in temp_nights]
 condition_list = [one_condition.text for one_condition in conditions]
 print('Делаю красивую табличку ...')
-weather = DataFrame(
-    {   str(city): '',
-        'День недели': name_list,
-        'Днем': day_list,
-        'Ночью': night_list,
-        'Краткое описание': condition_list
-    })
-print(weather)
-ss = input()
+all = [name_list, day_list, night_list]
+for i in all:
+    print(i)
